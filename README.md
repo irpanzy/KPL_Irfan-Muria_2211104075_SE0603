@@ -7,7 +7,7 @@ Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelol
 | No | Materi Praktikum |
 |----|-----------------|
 | 1  | Pengantar Praktikum KPL |
-| 2  | Pengenalan IDE dan Pemrograman C# |
+| 2  | Pengenalan IDE dan Pemrograman NodeJs |
 | 3  | GUI Builder dan GitHub |
 | 4  | Automata dan Table-Driven Construction |
 | 5  | Generics |
