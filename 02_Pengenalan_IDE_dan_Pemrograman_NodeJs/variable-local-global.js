@@ -1,7 +1,7 @@
-let globalVarible = "Firman Maulana";
+let globalVarible = "Irfan Muria";
 
 function getMyIdentity() {
-  let localVariable = 2211104083;
+  let localVariable = 2211104075;
 
   console.log(`Nama saya ${globalVarible} nim ${localVariable}`);
 }
