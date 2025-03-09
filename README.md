@@ -1,6 +1,6 @@
 # Konfigurasi Perangkat Lunak (KPL)
 
-Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelolaan perangkat lunak, mulai dari penggunaan **GitHub**, **manajemen repositori**, hingga konsep **Design by Contract**, **Testing**, dan **Clean Code**. 
+Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelolaan perangkat lunak, mulai dari penggunaan **GitHub**, **manajemen repositori**, **Pemrograman NodeJs**, hingga konsep **Design by Contract**, **Testing**, dan **Clean Code**. 
 
 
 ## 🔹 Materi Praktikum
