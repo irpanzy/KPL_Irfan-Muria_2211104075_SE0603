@@ -1,6 +1,6 @@
 # Konfigurasi Perangkat Lunak (KPL)
 
-Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelolaan perangkat lunak, mulai dari penggunaan **GitHub**, **manajemen repositori**, hingga konsep **Design by Contract**, **Testing**, dan **Clean Code**. 
+Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelolaan perangkat lunak, mulai dari penggunaan **GitHub**, **Manajemen Repositori**, **Pemrograman NodeJs**, hingga konsep **Design by Contract**, **Testing**, dan **Clean Code**. 
 
 
 ## 🔹 Materi Praktikum
@@ -26,7 +26,7 @@ Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelol
 ## 🎯 Aturan Praktikum
 1. **GitHub:** Setiap praktikan wajib memiliki akun GitHub dan menambahkan **dosen serta asisten praktikum** sebagai collaborator:
    - **Dosen:** [riyandwwi](https://github.com/riyandwwi)  
-   - **Asisten:** [Vaninside](https://github.com/Vaninside), [rizqiiirz](https://github.com/rizqiiirz)
+   - **Asisten Praktikum:** [Vaninside](https://github.com/Vaninside), [rizqiiirz](https://github.com/rizqiiirz)
    
 2. **Pengumpulan Laporan:**  
    - Laporan wajib dikumpulkan **sebelum praktikum berikutnya dimulai**.
