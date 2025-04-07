@@ -33,7 +33,7 @@ Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelol
 
 ## 📢 Catatan
 - Pastikan repository dan file selalu **terstruktur rapi** dan sesuai format.
-- Setiap tugas harus dikommit dan dipush ke repository **tepat waktu**.
+- Setiap tugas harus di commit dan dipush ke repository **tepat waktu**.
 - Gunakan GitHub sebagai alat utama dalam pengelolaan kode dan dokumentasi tugas.
 
 > **Selamat belajar di mata kuliah Konfigurasi Perangkat Lunak! 🚀**
