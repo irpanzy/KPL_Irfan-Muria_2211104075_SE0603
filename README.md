@@ -2,7 +2,6 @@
 
 Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelolaan perangkat lunak, mulai dari penggunaan **GitHub**, **Manajemen Repositori**, **Pemrograman NodeJs**, hingga konsep **Design by Contract**, **Testing**, dan **Clean Code**. 
 
-
 ## 🔹 Materi Praktikum
 | No | Materi Praktikum |
 |----|-----------------|
@@ -34,7 +33,7 @@ Mata kuliah **Konfigurasi Perangkat Lunak** membahas konsep dasar dalam pengelol
 
 ## 📢 Catatan
 - Pastikan repository dan file selalu **terstruktur rapi** dan sesuai format.
-- Setiap tugas harus dikommit dan dipush ke repository **tepat waktu**.
+- Setiap tugas harus di commit dan dipush ke repository **tepat waktu**.
 - Gunakan GitHub sebagai alat utama dalam pengelolaan kode dan dokumentasi tugas.
 
-> **Selamat belajar dan semoga sukses di mata kuliah Konfigurasi Perangkat Lunak! 🚀**
+> **Selamat belajar di mata kuliah Konfigurasi Perangkat Lunak! 🚀**
