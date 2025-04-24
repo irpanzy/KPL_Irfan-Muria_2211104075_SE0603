@@ -46,7 +46,7 @@ B. File konfigurasi yang digunakan adalah “bank_transfer_config.json” dengan
         "low_fee": "CONFIG3",
         "high_fee": "CONFIG4"
     },
-    "methods": CONFIG5,
+    "methods": "CONFIG5",
     "confirmation": {
         "en": "CONFIG6",
         "id": "CONFIG7"
@@ -109,30 +109,44 @@ E. Ubah nilai default pada json file “bank_transfer_config.json” dengan nila
 
 **Input**
 
-- covid_config
+- bank_transfer_config
 
 ```json
 {
-  "satuan_suhu": "fahrenheit",
-  "batas_hari_deman": 14,
-  "pesan_ditolak": "Anda tidak diperbolehkan masuk ke dalam gedung ini",
-  "pesan_diterima": "Anda dipersilahkan untuk masuk ke dalam gedung ini"
+  "lang": "en",
+  "transfer": {
+    "threshold": 25000000,
+    "low_fee": 6500,
+    "high_fee": 15000
+  },
+  "methods": ["RTO (real-time)", "SKN", "RTGS", "BI FAST"],
+  "confirmation": {
+    "en": "yes",
+    "id": "ya"
+  }
 }
 ```
 
-- CovidConfig
+- BankTransferConfig
 
 ```js
 const fs = require("fs");
 
-class CovidConfig {
-  constructor(filePath = "covid_config.json") {
+class BankTransferConfig {
+  constructor(filePath = "bank_transfer_config.json") {
     this.filePath = filePath;
     this.defaultConfig = {
-      satuan_suhu: "celcius",
-      batas_hari_deman: 14,
-      pesan_ditolak: "Anda tidak diperbolehkan masuk ke dalam gedung ini",
-      pesan_diterima: "Anda dipersilahkan untuk masuk ke dalam gedung ini",
+      lang: "en",
+      transfer: {
+        threshold: 25000000,
+        low_fee: 6500,
+        high_fee: 15000,
+      },
+      methods: ["RTO (real-time)", "SKN", "RTGS", "BI FAST"],
+      confirmation: {
+        en: "yes",
+        id: "ya",
+      },
     };
     this.config = this.loadConfig();
   }
@@ -142,7 +156,6 @@ class CovidConfig {
       this.saveConfig(this.defaultConfig);
       return this.defaultConfig;
     }
-
     const data = fs.readFileSync(this.filePath, "utf8");
     return JSON.parse(data);
   }
@@ -150,64 +163,85 @@ class CovidConfig {
   saveConfig(config) {
     fs.writeFileSync(this.filePath, JSON.stringify(config, null, 2));
   }
-
-  ubahSatuan() {
-    this.config.satuan_suhu =
-      this.config.satuan_suhu === "celcius" ? "fahrenheit" : "celcius";
-    this.saveConfig(this.config);
-  }
 }
 
-module.exports = CovidConfig;
+module.exports = BankTransferConfig;
 ```
 
 - index
 
 ```js
 const readline = require("readline");
-const CovidConfig = require("./CovidConfig");
-
-const config = new CovidConfig();
-
-config.ubahSatuan();
+const BankTransferConfig = require("./BankTransferConfig");
+const config = new BankTransferConfig().config;
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-const satuan = config.config.satuan_suhu;
-const batasHari = config.config.batas_hari_deman;
+const lang = config.lang;
+const threshold = config.transfer.threshold;
+const lowFee = config.transfer.low_fee;
+const highFee = config.transfer.high_fee;
+const methods = config.methods;
+const confirmation = config.confirmation;
 
-rl.question(
-  `Berapa suhu badan anda saat ini? Dalam nilai ${satuan}: `,
-  (suhuInput) => {
-    rl.question(
-      "Berapa hari yang lalu (perkiraan) anda terakhir memiliki gejala demam? ",
-      (hariInput) => {
-        const suhu = parseFloat(suhuInput);
-        const hari = parseInt(hariInput);
-        let suhuNormal = false;
+const ask = (question) =>
+  new Promise((resolve) => rl.question(question, resolve));
 
-        if (satuan === "celcius") {
-          suhuNormal = suhu >= 36.5 && suhu <= 37.5;
-        } else if (satuan === "fahrenheit") {
-          suhuNormal = suhu >= 97.7 && suhu <= 99.5;
-        }
+(async function main() {
+  const askAmount =
+    lang === "en"
+      ? "Please insert the amount of money to transfer: "
+      : "Masukkan jumlah uang yang akan di-transfer: ";
 
-        const demamNormal = hari < batasHari;
+  const amountStr = await ask(askAmount);
+  const amount = parseInt(amountStr);
 
-        if (suhuNormal && demamNormal) {
-          console.log(config.config.pesan_diterima);
-        } else {
-          console.log(config.config.pesan_ditolak);
-        }
+  const fee = amount <= threshold ? lowFee : highFee;
+  const total = amount + fee;
 
-        rl.close();
-      }
+  if (lang === "en") {
+    console.log(`Transfer fee = ${fee}`);
+    console.log(`Total amount = ${total}`);
+  } else {
+    console.log(`Biaya transfer = ${fee}`);
+    console.log(`Total biaya = ${total}`);
+  }
+
+  const methodPrompt =
+    lang === "en" ? "Select transfer method:" : "Pilih metode transfer:";
+  console.log(methodPrompt);
+  methods.forEach((method, i) => {
+    console.log(`${i + 1}. ${method}`);
+  });
+
+  await ask("> ");
+
+  const confirmPrompt =
+    lang === "en"
+      ? `Please type "${confirmation.en}" to confirm the transaction: `
+      : `Ketik "${confirmation.id}" untuk mengkonfirmasi transaksi: `;
+
+  const userConfirm = await ask(confirmPrompt);
+  const validConfirm =
+    lang === "en"
+      ? userConfirm.toLowerCase() === confirmation.en.toLowerCase()
+      : userConfirm.toLowerCase() === confirmation.id.toLowerCase();
+
+  if (validConfirm) {
+    console.log(
+      lang === "en" ? "The transfer is completed" : "Proses transfer berhasil"
+    );
+  } else {
+    console.log(
+      lang === "en" ? "Transfer is cancelled" : "Transfer dibatalkan"
     );
   }
-);
+
+  rl.close();
+})();
 ```
 
 **Output**
