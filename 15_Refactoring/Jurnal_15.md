@@ -3,8 +3,8 @@
 **TUGAS JURNAL**  
 **KONSTRUKSI PERANGKAT LUNAK**
 
-**MODUL XV**  
-**REFACTORING**
+**MODUL XIV**  
+**CLEAN CODE**
 
 ![logo tel-u](https://github.com/user-attachments/assets/3a44181d-9c92-47f6-8cf0-87755117fd99)
 
@@ -14,7 +14,7 @@ Disusun Oleh :
 **SE06-03**
 
 Asisten Praktikum :  
-Vaninside
+Vaninside  
 rizqiiirz
 
 Dosen Pengampu :  
@@ -33,241 +33,163 @@ TELKOM UNIVERSITY PURWOKERTO
 
 ## A. Soal Nomor 1
 
-MEMBUAT PROJECT GUI BARU
-Buka IDE misalnya dengan Visual Studio
-A. Misalnya menggunakan Visual Studio, buatlah project baru dengan nama modul12_NIM
-B. Pastikan project yang dibuat dapat menggunakan GUI (misalnya tipe Windows Form pada
-Visual Studio).
+**Fitur Aplikasi**
+
+1. Registrasi dan login user berbasis CLI
+2. Data disimpan di file `users.json`
+3. Validasi input:
+   - Username hanya huruf ASCII
+   - Password 8-20 karakter, wajib angka dan karakter spesial
+   - Password tidak boleh mengandung username
+4. Password hashing menggunakan SHA256
 
 ## B. Soal Nomor 2
 
-MEMBUAT GUI SEDERHANA
-Pada project yang telah dibuat sebelumnya:
-A. Buatlah suatu Form atau tampilan GUI sederhana dengan dua buah textbox, satu button dan satu label untuk menampilkan output.
-B. Tambahkan satu method dengan nama “CariNilaiPangkat(int a, int b)” yang menerima dua input dan mengembalikan nilai berupa hasil pangkat ab dengan melakukan iterasi (tanpa menggunakan library atau fungsi bawaan).
-C. Pada method tersebut terdapat aturan sebagai berikut (berbeda dengan aturan pangkat normal):
-i. Apabila input b adalah 0 maka nilai return selalu 1 (walapuun nilai a adalah 0)
-ii. Apabila input b adalah bilangan negatif, maka nilai return adalah -1
-iii. Apabila input b lebih dari 10 atau input a lebih dari 100 maka nilai return adalah -2
-iv. Apabila hasil pangkat melebihi batas maksimal bilangan positif integer (misal dengan
-checked pada C#) maka nilai return adalah -3
-D. Pada tampilan GUI, pada saat tombol ditekan, maka label output akan menampilkan hasil pangkat dari pemanggilan fungsi “CariNilaiPangkat” dari dua input textbox.
+**(Sisipkan screenshot hasil run dan isi `users.json`)**
 
-## C. Soal Nomor 3
+## Input
 
-MELAKUKAN SOFTWARE PROFILING
-Jalankan project yang dibuat sebelumnya dan jalankan profiling tools (misal dari visual studio, task manager atau sejenisnya):
-A. Pada saat program berjalan, catat dan amati CPU usage dari aplikasi yang sedang berjalan tanpa melakukan input apapun.
-B. Pada saat program berjalan, catat dan amati memory usage dari aplikasi yang sedang berjalan tanpa melakukan input apapun.
-C. Tambahkan input “3” pada textbox pertama dan “19” pada textbox kedua, dan tekan tombol button dan catat dan amati memory usage dari aplikasi.
-D. Laporkan apakah terdapat perubahan pada CPU usage dan memory (apabila tidak ada perubahan juga perlu dilaporkan di file docx).
-E. Lakukan lagi experimen dengan input pertama yaitu “9” dan angka kedua yaitu “30”, laporkan apakah terdapat perubahan di CPU usage dan memory.
-
-## D. Soal Nomor 4
-
-MENAMBAHKAN UNIT TESTING
-Di dalam project yang sama:
-A. Buatlah kode unit test untuk menguji method “CariNilaiPangkat” yang dibuat sebelumnya.
-B. Pastikan kode unit test tersebut memiliki branch coverage yang baik untuk method “CariNilaiPangkat”.
-C. Jalankan kode unit test yang dibuat dan lampirkan hasil unit testing yang dilakukan.
-
-**Input**
-
-- index.html
-
-  ```html
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Modul12_2211104075</title>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-        rel="stylesheet"
-      />
-      <style>
-        body {
-          font-family: "Inter", sans-serif;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          margin: 0;
-          background-color: #f3f4f6;
-        }
-
-        .container {
-          background: white;
-          padding: 2rem;
-          border-radius: 1rem;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-          width: 100%;
-          max-width: 400px;
-        }
-
-        h2 {
-          margin-bottom: 1.5rem;
-          font-size: 1.5rem;
-          color: #111827;
-          text-align: center;
-        }
-
-        input[type="number"] {
-          width: 100%;
-          padding: 0.75rem;
-          margin-bottom: 1rem;
-          border: 1px solid #d1d5db;
-          border-radius: 0.5rem;
-          font-size: 1rem;
-        }
-
-        button {
-          width: 100%;
-          padding: 0.75rem;
-          background-color: #2563eb;
-          color: white;
-          font-weight: 600;
-          font-size: 1rem;
-          border: none;
-          border-radius: 0.5rem;
-          cursor: pointer;
-          transition: background-color 0.2s ease;
-        }
-
-        button:hover {
-          background-color: #1e40af;
-        }
-
-        p#outputLabel {
-          margin-top: 1rem;
-          font-size: 1rem;
-          color: #374151;
-          text-align: center;
-        }
-
-        @media (max-width: 480px) {
-          .container {
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-          }
-
-          h2 {
-            font-size: 1.25rem;
-          }
-        }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h2>Hitung Pangkat</h2>
-        <input type="number" id="inputA" placeholder="Nilai a" />
-        <input type="number" id="inputB" placeholder="Nilai b" />
-        <button onclick="hitung()">Hitung Pangkat</button>
-        <p id="outputLabel">Hasil:</p>
-      </div>
-
-      <script src="script.js"></script>
-    </body>
-  </html>
-  ```
-
-- script.js
+- auth.js
 
   ```js
-  function CariNilaiPangkat(a, b) {
-    if (b === 0) return 1;
-    if (b < 0) return -1;
-    if (b > 10 || a > 100) return -2;
+  const fs = require("fs");
+  const crypto = require("crypto");
 
-    let result = 1;
-    try {
-      for (let i = 0; i < b; i++) {
-        result = checkOverflow(result * a);
-      }
-    } catch {
-      return -3;
+  const userFile = "users.json";
+
+  // Validasi input username dan password
+  function validateInput(username, password) {
+    const asciiOnly = /^[a-zA-Z]+$/;
+    const passwordRule = /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$/;
+
+    if (!asciiOnly.test(username)) {
+      throw new Error("Username hanya boleh berisi huruf alfabet ASCII.");
     }
-    return result;
-  }
-
-  function checkOverflow(num) {
-    if (num > Number.MAX_SAFE_INTEGER) throw new Error("Overflow");
-    return num;
-  }
-
-  function hitung() {
-    const a = parseInt(document.getElementById("inputA").value);
-    const b = parseInt(document.getElementById("inputB").value);
-    const hasil = CariNilaiPangkat(a, b);
-    document.getElementById("outputLabel").innerText = `Hasil: ${hasil}`;
-  }
-  ```
-
-- pangkat.js
-
-  ```js
-  function CariNilaiPangkat(a, b) {
-    if (b === 0) return 1;
-    if (b < 0) return -1;
-    if (b > 10 || a > 100) return -2;
-
-    let result = 1;
-    try {
-      for (let i = 0; i < b; i++) {
-        result = checkOverflow(result * a);
-      }
-    } catch {
-      return -3;
+    if (!passwordRule.test(password)) {
+      throw new Error(
+        "Password harus 8-20 karakter, mengandung angka dan karakter spesial."
+      );
     }
-    return result;
+    if (password.toLowerCase().includes(username.toLowerCase())) {
+      throw new Error("Password tidak boleh mengandung bagian dari username.");
+    }
   }
-  function checkOverflow(num) {
-    if (num > Number.MAX_SAFE_INTEGER) throw new Error("Overflow");
-    return num;
+
+  // Hash password menggunakan SHA256
+  function hashPassword(password) {
+    return crypto.createHash("sha256").update(password).digest("hex");
   }
-  module.exports = { CariNilaiPangkat };
+
+  // Simpan user
+  function registerUser(username, password) {
+    validateInput(username, password);
+    const users = loadUsers();
+    const exists = users.find((u) => u.username === username);
+    if (exists) throw new Error("Username sudah terdaftar.");
+
+    const user = { username, password: hashPassword(password) };
+    users.push(user);
+    fs.writeFileSync(userFile, JSON.stringify(users, null, 2));
+    console.log("Registrasi berhasil.");
+  }
+
+  // Login user
+  function loginUser(username, password) {
+    const users = loadUsers();
+    const hashed = hashPassword(password);
+    const user = users.find(
+      (u) => u.username === username && u.password === hashed
+    );
+    if (user) {
+      console.log("Login berhasil.");
+    } else {
+      console.log("Login gagal. Username atau password salah.");
+    }
+  }
+
+  // Load user dari file
+  function loadUsers() {
+    if (!fs.existsSync(userFile)) return [];
+    const data = fs.readFileSync(userFile);
+    return JSON.parse(data);
+  }
+
+  module.exports = { registerUser, loginUser };
   ```
 
-- test/pangkat.test.js
+- app.js
 
   ```js
-  const { CariNilaiPangkat } = require("../pangkat");
+  const readline = require("readline");
+  const { registerUser, loginUser } = require("./auth");
 
-  test("pangkat biasa", () => {
-    expect(CariNilaiPangkat(2, 3)).toBe(8);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
   });
 
-  test("pangkat 0", () => {
-    expect(CariNilaiPangkat(5, 0)).toBe(1);
-    expect(CariNilaiPangkat(0, 0)).toBe(1);
-  });
+  function showMenu() {
+    console.log("\n=== APLIKASI LOGIN ===");
+    console.log("1. Registrasi");
+    console.log("2. Login");
+    console.log("3. Keluar");
+    rl.question("Pilih menu: ", handleMenu);
+  }
 
-  test("bilangan negatif", () => {
-    expect(CariNilaiPangkat(3, -2)).toBe(-1);
-  });
+  function handleMenu(choice) {
+    switch (choice) {
+      case "1":
+        rl.question("Username: ", (username) => {
+          rl.question("Password: ", (password) => {
+            try {
+              registerUser(username, password);
+            } catch (err) {
+              console.error("Error:", err.message);
+            }
+            showMenu();
+          });
+        });
+        break;
+      case "2":
+        rl.question("Username: ", (username) => {
+          rl.question("Password: ", (password) => {
+            try {
+              loginUser(username, password);
+            } catch (err) {
+              console.error("Error:", err.message);
+            }
+            showMenu();
+          });
+        });
+        break;
+      case "3":
+        rl.close();
+        break;
+      default:
+        console.log("Pilihan tidak valid.");
+        showMenu();
+    }
+  }
 
-  test("batas input", () => {
-    expect(CariNilaiPangkat(101, 2)).toBe(-2);
-    expect(CariNilaiPangkat(2, 11)).toBe(-2);
-  });
-
-  test("overflow", () => {
-    expect(CariNilaiPangkat(100, 10)).toBe(-3);
-  });
+  showMenu();
   ```
 
-**Output**
+- users.json
+  ```json
+  [
+    {
+      "username": "irpanzy",
+      "password": "81f7a308f52fb02f32f2a3ee370bef9bc2811a3177ec10e4e1777c155041d02c"
+    },
+    {
+      "username": "Hasna",
+      "password": "9489242a41062a4c26c222b794f9b144377ece69ed0929bec2c8c29d6fd1a73d"
+    }
+  ]
+  ```
 
-- Soal 1 & 2
-  ![image](https://github.com/user-attachments/assets/48d532ba-d157-4500-bd35-c6db564bc64f)
+## Output
 
-- Soal 3
-  ![Screenshot 2025-05-17 222322](https://github.com/user-attachments/assets/42526829-c1d3-4234-b649-a603bf989eae)
-  ![Screenshot 2025-05-17 222341](https://github.com/user-attachments/assets/4632600a-f769-4db9-b584-91e2542bffc1)
-  ![Screenshot 2025-05-17 222436](https://github.com/user-attachments/assets/df9acac8-7f9f-4796-a786-1e6e1ad4d35e)
-
-- Soal 4
-  ![image](https://github.com/user-attachments/assets/b601a628-8a89-45fa-aa8f-aec5adb95634)
+- ![Screenshot 2025-06-09 040408](https://github.com/user-attachments/assets/67c7b214-50e9-4e34-9801-4cf9f567c323)
 
 ---
