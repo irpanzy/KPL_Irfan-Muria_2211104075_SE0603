@@ -3,8 +3,8 @@
 **TUGAS JURNAL**  
 **KONSTRUKSI PERANGKAT LUNAK**
 
-**MODUL XIV**  
-**CLEAN CODE**
+**MODUL XV**  
+**REFACTORING**
 
 ![logo tel-u](https://github.com/user-attachments/assets/3a44181d-9c92-47f6-8cf0-87755117fd99)
 
